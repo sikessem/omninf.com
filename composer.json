@@ -1,0 +1,46 @@
+{
+    "name": "sikessem/omninf",
+    "type": "project",
+    "version": "1.0.0",
+    "description": "Awesome application with Apache, PHP and MySQL",
+    "license": "Apache-2.0",
+    "keywords": [
+        "omninf",
+        "sikessem",
+        "awesome-app",
+        "php",
+        "apache",
+        "mysql"
+    ],
+    "authors": [{
+        "homepage": "https://sikessem.com/",
+        "name": "SIGUI Kessé Emmanuel",
+        "email": "opensource@sikessem.com",
+        "role": "Developer"
+    }],
+    "support": {
+        "source": "https://github.com/SIKessEm/omninf.com",
+        "issues": "https://github.com/SIKessEm/omninf.com/issues"
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "files": [
+            "ext/sikessem.php",
+            "ext/omninf.php"
+        ],
+        "psr-4": {
+            "SIKessEm\\": "lib/SIKessEm/",
+            "Omninf\\": "lib/Omninf/"
+        }
+    },
+    "homepage": "https://github.com/SIKessEm/omninf.com#readme",
+    "config": {
+        "vendor-dir": "pkg",
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

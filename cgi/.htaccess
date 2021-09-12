@@ -1,0 +1,24 @@
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php80___lsphp .php .php8 .phtml
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  <IfModule mod_negotiation.c>
+      Options -MultiViews -Indexes
+  </IfModule>
+
+  # Instructions for rewrite rules
+  Options +FollowSymLinks
+  RewriteEngine On
+  RewriteBase /cgi
+
+  # Removing the slash at the end of file URLs
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [L,R=301]
+
+  # Redirection of all requests to the boot file
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule .* index.php [QSA,L,PT,END]
+</IfModule>

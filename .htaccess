@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+  # Instructions for rewrite rules
+  Options +FollowSymLinks
+  RewriteEngine On
+  RewriteBase /
+
+  # Forcing secure request
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{SERVER_PORT} 80
+  RewriteCond %{HTTPS} off
+  RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  Header always set Content-Security-Policy "upgrade-insecure-requests;"
+
+  # Forcing www in the URL
+  #RewriteCond %{HTTP_HOST} ^[^.]+.[^.]+$
+  #RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Removing www in the URL
+  RewriteCond %{HTTP_HOST} ^www.((?:[^.]+.)+[^.]+)$
+  RewriteRule .* https://%1 [L,R=301]
+
+  RewriteRule (.*) /cgi/$1 [L]
+</IfModule>
